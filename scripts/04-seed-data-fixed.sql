@@ -3,7 +3,7 @@
 
 -- サンプルユーザー（実際の認証では auth.users テーブルから自動作成されます）
 INSERT INTO users (id, email, name) VALUES
-  ('550e8400-e29b-41d4-a716-446655440000', 'demo@example.com', 'デモユーザー');
+  ('550e8400-e29b-41d4-a716-446655440000', 'demo@gmail.com', 'デモユーザー');
 
 -- カテゴリは自動作成されるので、既存のものを使用
 

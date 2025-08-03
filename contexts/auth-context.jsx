@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
       // デモ用のユーザーを設定
       const demoUser = {
         id: "demo-user-123",
-        email: "demo@example.com",
+        email: "demo@gmail.com",
         user_metadata: {
           name: "デモユーザー"
         },
@@ -68,7 +68,7 @@ export const AuthProvider = ({ children }) => {
         // エラーの場合はデモユーザーを使用
         const demoUser = {
           id: "demo-user-123",
-          email: "demo@example.com",
+          email: "demo@gmail.com",
           user_metadata: {
             name: "デモユーザー"
           },
