@@ -44,19 +44,27 @@ export const AuthProvider = ({ children }) => {
     // 初期ユーザー状態を取得
     const getInitialUser = async () => {
       try {
+        // まずセッションを確認
         const {
-          data: { user },
-          error,
-        } = await supabase.auth.getUser()
-        if (error) {
-          console.error("認証エラー:", error)
-          setError(error.message)
+          data: { session },
+          error: sessionError,
+        } = await supabase.auth.getSession()
+        
+        if (sessionError) {
+          console.error("セッション取得エラー:", sessionError)
+          // セッションがない場合はnullユーザーに設定
+          setUser(null)
+          setLoading(false)
+          return
+        }
+
+        if (session?.user) {
+          setUser(session.user)
         } else {
-          setUser(user)
+          setUser(null)
         }
       } catch (err) {
-        console.error("ユーザー取得エラー:", err)
-        setError(err.message)
+        console.error("認証初期化エラー:", err)
         // エラーの場合はデモユーザーを使用
         const demoUser = {
           id: "demo-user-123",

@@ -18,6 +18,20 @@ export function TimerProvider({ children }) {
     pomodoroCount: 0,
   })
 
+  // タイマーページ用の追加状態（デフォルト値で初期化）
+  const [isPaused, setIsPaused] = useState(false)
+  const [timerType, setTimerType] = useState("pomodoro")
+  const [selectedGoal, setSelectedGoal] = useState(null)
+  const [isBreakTime] = useState(false)
+  const [isInitialized] = useState(true)
+  const [pomodoroSession] = useState(null)
+  const [pomodoroSettings, setPomodoroSettings] = useState({
+    workDuration: 25,
+    shortBreakDuration: 5,
+    longBreakDuration: 15,
+    sessionsUntilLongBreak: 4,
+  })
+
   // タイマーの実行
   useEffect(() => {
     let interval = null
@@ -98,18 +112,46 @@ export function TimerProvider({ children }) {
   // タイマー一時停止
   const pauseTimer = () => {
     setIsRunning(false)
+    setIsPaused(true)
   }
 
   // タイマー再開
   const resumeTimer = () => {
     setIsRunning(true)
+    setIsPaused(false)
+  }
+
+  // タイマー停止
+  const stopTimer = () => {
+    setIsRunning(false)
+    setIsPaused(false)
+    if (currentSession) {
+      handleSessionComplete()
+    }
+    setCurrentSession(null)
   }
 
   // タイマーリセット
   const resetTimer = () => {
     setIsRunning(false)
+    setIsPaused(false)
     setTime(25 * 60)
     setCurrentSession(null)
+  }
+
+  // タイマーページ用の追加関数（シンプル実装）
+  const initializeTimer = () => {
+    setTime(25 * 60)
+  }
+
+  const setLastActiveTime = () => {
+    // タイマーページで必要だが、実際の処理は不要
+  }
+
+  const showNotification = (title, body) => {
+    if (Notification.permission === "granted") {
+      new Notification(title, { body, icon: "/favicon.ico" })
+    }
   }
 
   // 時間フォーマット
@@ -135,14 +177,28 @@ export function TimerProvider({ children }) {
   const value = {
     time,
     isRunning,
+    isPaused,
     mode,
+    timerType,
+    setTimerType,
     currentSession,
     sessionHistory,
+    selectedGoal,
+    setSelectedGoal,
+    isBreakTime,
+    isInitialized,
+    pomodoroSession,
+    pomodoroSettings,
+    setPomodoroSettings,
     todayStats,
     startTimer,
     pauseTimer,
     resumeTimer,
+    stopTimer,
     resetTimer,
+    initializeTimer,
+    setLastActiveTime,
+    showNotification,
     formatTime,
     getTodayStats,
     completeSession,

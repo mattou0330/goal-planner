@@ -285,7 +285,9 @@ export default function GoalsPage() {
       closeModal()
     } catch (err) {
       console.error("目標保存エラー:", err)
-      setError("目標の保存に失敗しました")
+      console.error("エラーメッセージ:", err.message)
+      console.error("エラー詳細:", JSON.stringify(err, null, 2))
+      setError(`目標の保存に失敗しました: ${err.message || 'Unknown error'}`)
     }
   }
 

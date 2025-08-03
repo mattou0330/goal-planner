@@ -99,20 +99,58 @@ export default function DataPage() {
       setLoading(true)
       setError(null)
 
-      const [recordsData, timerData, bigGoalsData, smallGoalsData] = await Promise.all([
-        recordsApi.getByMonth(selectedYear, selectedMonth + 1),
-        timerRecordsApi.getMonthlyStats(selectedYear, selectedMonth + 1),
-        bigGoalsApi.getAll(),
-        smallGoalsApi.getAll(),
-      ])
+      console.log("データ読み込み開始...")
+
+      // 個別にAPI呼び出しをして、どれが失敗するかを特定
+      let recordsData, timerData, bigGoalsData, smallGoalsData;
+
+      try {
+        console.log("記録データを取得中...")
+        recordsData = await recordsApi.getByMonth(selectedYear, selectedMonth + 1)
+        console.log("記録データ取得成功:", recordsData?.length || 0, "件")
+      } catch (err) {
+        console.error("記録データ取得エラー:", err)
+        recordsData = []
+      }
+
+      try {
+        console.log("タイマーデータを取得中...")
+        timerData = await timerRecordsApi.getMonthlyStats(selectedYear, selectedMonth + 1)
+        console.log("タイマーデータ取得成功:", timerData?.length || 0, "件")
+      } catch (err) {
+        console.error("タイマーデータ取得エラー:", err)
+        timerData = []
+      }
+
+      try {
+        console.log("ビッグゴールデータを取得中...")
+        bigGoalsData = await bigGoalsApi.getAll()
+        console.log("ビッグゴールデータ取得成功:", bigGoalsData?.length || 0, "件")
+      } catch (err) {
+        console.error("ビッグゴールデータ取得エラー:", err)
+        bigGoalsData = []
+      }
+
+      try {
+        console.log("スモールゴールデータを取得中...")
+        smallGoalsData = await smallGoalsApi.getAll()
+        console.log("スモールゴールデータ取得成功:", smallGoalsData?.length || 0, "件")
+      } catch (err) {
+        console.error("スモールゴールデータ取得エラー:", err)
+        smallGoalsData = []
+      }
 
       setRecords(recordsData || [])
       setTimerRecords(timerData || [])
       setBigGoals(bigGoalsData || [])
       setSmallGoals(smallGoalsData || [])
+
+      console.log("全データ読み込み完了")
     } catch (err) {
       console.error("データ読み込みエラー:", err)
-      setError("データの読み込みに失敗しました")
+      console.error("エラーメッセージ:", err.message)
+      console.error("エラー詳細:", JSON.stringify(err, null, 2))
+      setError(`データの読み込みに失敗しました: ${err.message || 'Unknown error'}`)
     } finally {
       setLoading(false)
     }
@@ -416,11 +454,11 @@ export default function DataPage() {
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center">
-                <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl mr-4 shadow-lg shadow-blue-500/20">
+                <div className="p-3 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl mr-4 shadow-lg shadow-violet-500/20">
                   <BarChart3 className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 bg-clip-text text-transparent">
+                  <h1 className="text-4xl font-bold bg-gradient-to-r from-violet-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
                     詳細統計
                   </h1>
                   <p className="text-slate-600 mt-1">Supabaseデータを活用した包括的な分析</p>
@@ -569,7 +607,7 @@ export default function DataPage() {
                     <TrendingUp className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-slate-800">気分とエネルギーの推移</h3>
+                    <h3 className="text-lg font-bold text-slate-700">気分とエネルギーの推移</h3>
                     <p className="text-sm text-slate-600">{months[selectedMonth]}の日別データ</p>
                   </div>
                 </div>
@@ -670,7 +708,7 @@ export default function DataPage() {
                   <PieChartIcon className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-slate-800">カテゴリ別目標分布</h3>
+                  <h3 className="text-lg font-bold text-slate-700">カテゴリ別目標分布</h3>
                   <p className="text-sm text-slate-600">スモールゴールの分布</p>
                 </div>
               </div>
@@ -719,7 +757,7 @@ export default function DataPage() {
                   <BarChart3 className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-slate-800">週別トレンド</h3>
+                  <h3 className="text-lg font-bold text-slate-700">週別トレンド</h3>
                   <p className="text-sm text-slate-600">週ごとの気分とエネルギーの変化</p>
                 </div>
               </div>

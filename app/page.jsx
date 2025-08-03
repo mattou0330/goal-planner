@@ -117,8 +117,8 @@ function Dashboard() {
                     </svg>
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">ビッグゴール</p>
-                    <p className="text-2xl font-semibold text-gray-900">
+                                    <p className="text-sm font-medium text-slate-600">ビッグゴール</p>
+                <p className="text-2xl font-bold text-slate-800">
                       {stats.completedBigGoals}/{stats.totalBigGoals}
                     </p>
                   </div>
@@ -145,8 +145,8 @@ function Dashboard() {
                     </svg>
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">スモールゴール</p>
-                    <p className="text-2xl font-semibold text-gray-900">
+                                    <p className="text-sm font-medium text-slate-600">スモールゴール</p>
+                <p className="text-2xl font-bold text-slate-800">
                       {stats.completedSmallGoals}/{stats.totalSmallGoals}
                     </p>
                   </div>
@@ -178,12 +178,12 @@ function Dashboard() {
                     </svg>
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">記録数</p>
-                    <p className="text-2xl font-semibold text-gray-900">{stats.totalRecords}</p>
+                                    <p className="text-sm font-medium text-slate-600">記録数</p>
+                <p className="text-2xl font-bold text-slate-800">{stats.totalRecords}</p>
                   </div>
                 </div>
                 <div className="mt-4">
-                  <p className="text-sm text-gray-500">今月の振り返り記録</p>
+                  <p className="text-sm text-slate-500">今月の振り返り記録</p>
                 </div>
               </div>
 
@@ -201,12 +201,12 @@ function Dashboard() {
                     </svg>
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">今日の作業時間</p>
-                    <p className="text-2xl font-semibold text-gray-900">{formatTime(stats.todayTimerTime)}</p>
+                                    <p className="text-sm font-medium text-slate-600">今日の作業時間</p>
+                <p className="text-2xl font-bold text-slate-800">{formatTime(stats.todayTimerTime)}</p>
                   </div>
                 </div>
                 <div className="mt-4">
-                  <p className="text-sm text-gray-500">{stats.todayTimerSessions}セッション完了</p>
+                  <p className="text-sm text-slate-500">{stats.todayTimerSessions}セッション完了</p>
                 </div>
               </div>
             </div>
@@ -224,7 +224,7 @@ function Dashboard() {
                       {bigGoals.slice(0, 3).map((goal) => (
                         <div key={goal?.id || Math.random()} className="flex items-center justify-between">
                           <div className="flex-1">
-                            <p className="text-sm font-medium text-gray-900">{goal?.title || "無題のゴール"}</p>
+                            <p className="text-sm font-bold text-slate-800">{goal?.title || "無題のゴール"}</p>
                             <p className="text-sm text-gray-500">{goal?.categories?.name || "カテゴリなし"}</p>
                           </div>
                           <div className="flex items-center">
@@ -258,7 +258,7 @@ function Dashboard() {
                       {smallGoals.slice(0, 3).map((goal) => (
                         <div key={goal?.id || Math.random()} className="flex items-center justify-between">
                           <div className="flex-1">
-                            <p className="text-sm font-medium text-gray-900">{goal?.title || "無題のゴール"}</p>
+                            <p className="text-sm font-bold text-slate-800">{goal?.title || "無題のゴール"}</p>
                             <div className="flex items-center mt-1">
                               <div className="w-full bg-gray-200 rounded-full h-1.5 mr-2">
                                 <div
@@ -303,8 +303,8 @@ function Dashboard() {
                       </svg>
                     </div>
                     <div className="ml-4">
-                      <p className="text-sm font-medium text-gray-900">新しい目標を作成</p>
-                      <p className="text-sm text-gray-500">ビッグゴールやスモールゴールを追加</p>
+                      <p className="text-sm font-bold text-slate-800">新しい目標を作成</p>
+                      <p className="text-sm text-slate-600">ビッグゴールやスモールゴールを追加</p>
                     </div>
                   </div>
                 </Link>
@@ -325,8 +325,8 @@ function Dashboard() {
                       </svg>
                     </div>
                     <div className="ml-4">
-                      <p className="text-sm font-medium text-gray-900">タイマーを開始</p>
-                      <p className="text-sm text-gray-500">ポモドーロタイマーで集中</p>
+                      <p className="text-sm font-bold text-slate-800">タイマーを開始</p>
+                      <p className="text-sm text-slate-600">ポモドーロタイマーで集中</p>
                     </div>
                   </div>
                 </Link>
@@ -347,8 +347,8 @@ function Dashboard() {
                       </svg>
                     </div>
                     <div className="ml-4">
-                      <p className="text-sm font-medium text-gray-900">記録を追加</p>
-                      <p className="text-sm text-gray-500">今日の振り返りを記録</p>
+                      <p className="text-sm font-bold text-slate-800">記録を追加</p>
+                      <p className="text-sm text-slate-600">今日の振り返りを記録</p>
                     </div>
                   </div>
                 </Link>
