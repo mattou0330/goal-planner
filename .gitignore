@@ -29,6 +29,9 @@ yarn-error.log*
 .env.staging
 .env.production
 
+# Allow example env file for other developers
+!.env.local.example
+
 # vercel
 .vercel
 

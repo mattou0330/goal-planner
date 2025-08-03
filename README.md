@@ -336,11 +336,91 @@ contexts/
 - **ソーシャル機能**: 進捗共有
 
 ### 技術的改善
-- **データベース統合**: Supabase/Neon
 - **認証システム**: NextAuth.js
 - **リアルタイム同期**: WebSocket
 - **PWA対応**: オフライン機能
 - **テスト実装**: Jest/Testing Library
+
+## 🚀 クイックスタート
+
+### 1. リポジトリのクローン
+```bash
+git clone https://github.com/YOUR_USERNAME/goal-planner.git
+cd goal-planner
+```
+
+### 2. 依存関係のインストール
+```bash
+pnpm install
+# または
+npm install
+```
+
+### 3. Supabaseプロジェクトの作成
+1. [Supabase](https://supabase.com)にアクセス
+2. 新しいプロジェクトを作成
+3. Project Settings → API から以下をコピー:
+   - `Project URL`
+   - `anon public key`
+
+### 4. 環境変数の設定
+```bash
+# .env.local ファイルを作成
+cp .env.local.example .env.local
+```
+
+`.env.local` に以下を記入:
+```env
+NEXT_PUBLIC_SUPABASE_URL=your-project-url-here
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
+```
+
+### 5. データベースのセットアップ
+Supabase SQL Editorで以下のスクリプトを**順番に**実行:
+
+```bash
+# 1. テーブル作成
+scripts/01-create-tables.sql
+
+# 2. セキュリティポリシー設定
+scripts/02-create-rls-policies.sql
+
+# 3. データベース関数作成
+scripts/03-create-functions.sql
+
+# 4. サンプルデータ追加（オプション）
+scripts/04-seed-data-fixed.sql
+
+# 5. デモアカウント作成（オプション）
+scripts/05-create-demo-account-simple.sql
+```
+
+### 6. アプリケーションの起動
+```bash
+pnpm dev
+# または
+npm run dev
+```
+
+ブラウザで `http://localhost:3000` にアクセス
+
+## 📖 使用方法
+
+### 🔐 認証
+- **新規登録**: 実際のメールアドレスでサインアップ
+- **クイックスタート**: デモ用メールアドレスで即座に体験
+- **デモモード**: Supabase未設定時は自動的にデモデータで動作
+
+### 🎯 目標管理
+1. **ビッグゴール**: 長期的な大きな目標を設定
+2. **スモールゴール**: 具体的で測定可能な小さな目標を設定
+3. **カテゴリ**: 目標を分類して整理
+4. **進捗追跡**: 数値ベースで進捗を記録
+
+### ⏰ タイマー機能
+- **ポモドーロテクニック**: 25分集中 + 5分休憩
+- **カスタムタイマー**: 自由な時間設定
+- **統計**: 集中時間の記録と分析
 
 ---
 
