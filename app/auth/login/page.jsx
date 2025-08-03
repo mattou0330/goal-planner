@@ -59,31 +59,11 @@ export default function LoginPage() {
     setLoading(false)
   }
 
-  const handleQuickStart = async () => {
-    // テスト用のアカウントを自動作成
-    const testEmail = `test.user.${Date.now()}@gmail.com`
-    const testPassword = "test123456"
-
-    setLoading(true)
-    setMessage("テストアカウントを作成中...")
-
-    try {
-      // アカウントを作成
-      await signUp(testEmail, testPassword)
-      setMessage(`テストアカウントが作成されました: ${testEmail}`)
-      setIsSuccess(true)
-
-      // 作成したアカウント情報を表示
-      setEmail(testEmail)
-      setPassword(testPassword)
-    } catch (error) {
-      console.error("テストアカウント作成エラー:", error)
-      setMessage("テストアカウントの作成に失敗しました。手動でアカウントを作成してください。")
-      setIsSuccess(false)
-      setIsSignUp(true)
-    }
-
-    setLoading(false)
+  const fillDemoCredentials = () => {
+    setEmail("demo@example.com")
+    setPassword("demo123456")
+    setMessage("デモアカウントの情報が入力されました")
+    setIsSuccess(true)
   }
 
   return (
@@ -180,23 +160,16 @@ export default function LoginPage() {
             </button>
           </form>
 
-          {/* クイックスタートボタン */}
+          {/* デモアカウント情報 */}
           {!isSignUp && (
             <div className="mt-4">
               <button
                 type="button"
-                onClick={handleQuickStart}
-                disabled={loading}
-                className="w-full flex items-center justify-center px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-xl hover:from-emerald-600 hover:to-teal-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 font-semibold shadow-lg shadow-emerald-500/30"
+                onClick={fillDemoCredentials}
+                className="w-full flex items-center justify-center px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-xl hover:from-emerald-600 hover:to-teal-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-all duration-300 font-semibold shadow-lg shadow-emerald-500/30"
               >
-                {loading ? (
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                ) : (
-                  <>
-                    <UserPlus className="mr-2 h-5 w-5" />
-                    <span>クイックスタート（テストアカウント作成）</span>
-                  </>
-                )}
+                <UserPlus className="mr-2 h-5 w-5" />
+                <span>デモアカウントを使用</span>
               </button>
             </div>
           )}
@@ -239,16 +212,20 @@ export default function LoginPage() {
             </button>
           </div>
 
-          {/* 説明 */}
+          {/* デモアカウント情報表示 */}
           <div className="mt-8 p-4 bg-gradient-to-r from-blue-50/80 to-indigo-50/50 rounded-xl border border-blue-200/50 backdrop-blur-sm">
             <div className="flex items-start gap-3">
               <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div>
-                <h3 className="text-sm font-bold text-blue-900 mb-2">はじめての方へ</h3>
-                <p className="text-xs text-blue-700 font-medium leading-relaxed">
-                  「クイックスタート」ボタンをクリックすると、テスト用のアカウントが自動作成され、すぐにアプリを体験できます。
-                  本格的に利用する場合は、お好みのメールアドレスでアカウントを作成してください。
-                </p>
+                <h3 className="text-sm font-bold text-blue-900 mb-2">デモアカウント</h3>
+                <div className="text-xs text-blue-700 font-medium leading-relaxed">
+                  <p className="mb-2">アプリを体験したい方は以下のデモアカウントをご利用ください：</p>
+                  <div className="bg-white/50 p-3 rounded-lg">
+                    <p><strong>メールアドレス:</strong> demo@example.com</p>
+                    <p><strong>パスワード:</strong> demo123456</p>
+                  </div>
+                  <p className="mt-2">本格的に利用する場合は、お好みのメールアドレスでアカウントを作成してください。</p>
+                </div>
               </div>
             </div>
           </div>
