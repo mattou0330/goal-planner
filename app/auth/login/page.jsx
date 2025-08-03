@@ -60,8 +60,8 @@ export default function LoginPage() {
   }
 
   const fillDemoCredentials = () => {
-    setEmail("demo@example.com")
-    setPassword("demo123456")
+    setEmail("demo@gmail.com")
+    setPassword("Demo@2024#Secure!")
     setMessage("デモアカウントの情報が入力されました")
     setIsSuccess(true)
   }
@@ -221,8 +221,8 @@ export default function LoginPage() {
                 <div className="text-xs text-blue-700 font-medium leading-relaxed">
                   <p className="mb-2">アプリを体験したい方は以下のデモアカウントをご利用ください：</p>
                   <div className="bg-white/50 p-3 rounded-lg">
-                    <p><strong>メールアドレス:</strong> demo@example.com</p>
-                    <p><strong>パスワード:</strong> demo123456</p>
+                    <p><strong>メールアドレス:</strong> demo@gmail.com</p>
+                    <p><strong>パスワード:</strong> Demo@2024#Secure!</p>
                   </div>
                   <p className="mt-2">本格的に利用する場合は、お好みのメールアドレスでアカウントを作成してください。</p>
                 </div>

@@ -16,6 +16,9 @@ CREATE POLICY "Users can view own profile" ON users
 CREATE POLICY "Users can update own profile" ON users
   FOR UPDATE USING (auth.uid() = id);
 
+CREATE POLICY "Enable insert for authenticated users" ON users
+  FOR INSERT WITH CHECK (true);
+
 -- カテゴリテーブルのポリシー
 CREATE POLICY "Users can view own categories" ON categories
   FOR SELECT USING (auth.uid() = user_id);

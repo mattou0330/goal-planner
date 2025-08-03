@@ -1,8 +1,15 @@
 -- 簡易版デモアカウント作成スクリプト
 -- 注意: このスクリプトはSupabase管理画面のSQL Editorで実行してください
 
+-- デモアカウント認証情報:
+-- Email: demo@gmail.com
+-- Password: Demo@2024#Secure!
+-- 
+-- 実際の認証アカウントは手動でSupabase Auth > Usersで作成してください
+-- このスクリプトはデータテーブル用のレコードのみ作成します
+
 -- まず既存のデモデータをクリーンアップ（任意）
--- DELETE FROM users WHERE email = 'demo@example.com';
+-- DELETE FROM users WHERE email = 'demo@gmail.com';
 
 -- デモユーザーを作成（publicスキーマのusersテーブル）
 -- 実際の認証はアプリ側でSupabase Authを使用します
@@ -14,7 +21,7 @@ INSERT INTO public.users (
   updated_at
 ) VALUES (
   '550e8400-e29b-41d4-a716-446655440000',
-  'demo@example.com',
+  'demo@gmail.com',
   'デモユーザー',
   NOW(),
   NOW()
